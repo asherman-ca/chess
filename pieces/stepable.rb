@@ -31,6 +31,7 @@ module Stepable
 
   def moves
     moves = []
+    current_x, current_y = pos
 
     move_dirs.each do |dx, dy|
       current_x += dx
