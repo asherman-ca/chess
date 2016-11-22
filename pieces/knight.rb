@@ -1,3 +1,5 @@
+require_relative 'stepable'
+
 class Knight < Piece
 
   def to_s

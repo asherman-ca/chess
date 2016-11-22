@@ -9,5 +9,8 @@ class NullPiece
   def to_s
     "   "
   end
-  
+
+  def color
+  end
+
 end

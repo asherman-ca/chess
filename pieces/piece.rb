@@ -12,13 +12,11 @@ class Piece
   end
 
   def moves
-    #duck typing
+    #refer to subclasses
   end
 
   def empty?
-  end
-
-  def valid_moves(pos)
+    self.is_a?(NullPiece)
   end
 
   private

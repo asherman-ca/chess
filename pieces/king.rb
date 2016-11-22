@@ -1,3 +1,5 @@
+require_relative 'stepable'
+
 class King < Piece
 
   def to_s
