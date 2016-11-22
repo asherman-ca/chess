@@ -1,6 +1,6 @@
-require_relative 'piece'
+require_relative 'pieces/piece'
 require_relative 'display'
-require_relative 'nullpiece'
+require_relative 'pieces/nullpiece'
 
 class Board
 
@@ -16,7 +16,7 @@ class Board
     @grid.each_with_index do |row, i|
       if i < 2 || i > 5
         row.each_index do |j|
-          @grid[i][j] = Piece.new(@grid,[i,j])
+          @grid[i][j] = Piece.new(@grid, [i, j])
         end
       end
     end
