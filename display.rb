@@ -60,6 +60,7 @@ class Display
     end
   end
 
+
   def actual_method
     while true
       self.render

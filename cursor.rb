@@ -82,8 +82,10 @@ class Cursor
     # debugger
     case key
     when :space, :newline
-      @cursor_pos
+      @selected = cursor_pos
+      :space
     when :right, :left, :up, :down
+      @selected = nil
       update_pos(MOVES[key])
     when :ctrl_c
       Process.exit(0)
@@ -93,7 +95,7 @@ class Cursor
   def update_pos(diff)
     updated = @cursor_pos.map.with_index { |pos, i| pos + diff[i] }
     @cursor_pos = updated if in_bounds?(updated)
-    p "cursor fail" if !in_bounds?(updated)
+    puts "cursor fail" if !in_bounds?(updated)
   end
 
   def in_bounds?(updated_pos)

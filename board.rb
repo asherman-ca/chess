@@ -16,7 +16,7 @@ class Board
     @grid.each_with_index do |row, i|
       if i < 2 || i > 5
         row.each_index do |j|
-          @grid[i][j] = Piece.new(@grid, [i, j])
+          @grid[i][j] = Piece.new(@grid, [i, j], :white)
         end
       end
     end
@@ -50,7 +50,7 @@ class Board
 end
 
 
-tester = Board.new
-rend = Display.new(tester)
-rend.render
-rend.actual_method
+# tester = Board.new
+# rend = Display.new(tester)
+# rend.render
+# rend.actual_method
