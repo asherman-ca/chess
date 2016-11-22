@@ -15,8 +15,8 @@ class Board
   def populate_royalty
     @grid.each_with_index do |row, i|
       if i < 2 || i > 5
-        row.each_index do |i2|
-          @grid[i][i2] = Piece.new
+        row.each_index do |j|
+          @grid[i][j] = Piece.new(@grid,[i,j])
         end
       end
     end
@@ -32,7 +32,10 @@ class Board
     rescue
       puts "Invalid"
     end
+  end
 
+  def valid_move?(pos)
+    pos.all? { |coord| coord.between?(0, 7) }
   end
 
   def []=(pos, value)
