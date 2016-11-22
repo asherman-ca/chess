@@ -1,11 +1,14 @@
 require_relative 'piece'
+require_relative 'display'
+require_relative 'nullpiece'
 
 class Board
 
   attr_accessor :grid
 
   def initialize
-    @grid = Array.new(8) { Array.new(8) { nil } }
+    null_piece = NullPiece.instance
+    @grid = Array.new(8) { Array.new(8) { null_piece } }
     populate_royalty
   end
 
@@ -21,11 +24,11 @@ class Board
 
   def move_piece(start_pos, end_pos)
     begin
-      raise unless self[end_pos].nil?
-      raise if self[start_pos].nil?
+      raise unless self[end_pos].is_a?(NullPiece)
+      raise if self[start_pos].is_a?(NullPiece)
 
       self[end_pos] = self[start_pos]
-      self[start_pos] = nil
+      self[start_pos] = NullPiece.instance
     rescue
       puts "Invalid"
     end
@@ -41,7 +44,10 @@ class Board
     row, col = pos
     @grid[row][col]
   end
-
 end
 
-p test = Board.new
+
+tester = Board.new
+rend = Display.new(tester)
+rend.render
+rend.actual_method
