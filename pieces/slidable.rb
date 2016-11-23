@@ -25,27 +25,27 @@ module Slidable
     moves = []
 
     move_dirs.each do |dx, dy|
-      moves << build_moves(dx, dy)
+      moves += build_moves(dx, dy)
     end
 
     moves
   end
 
   def build_moves(dx, dy)
-    current_x, current_y = pos
+
     moves = []
+    current_x, current_y = pos
 
-    loop do
-      current_x += dx
-      current_y += dy
-
+    while true
+      current_x += dy
+      current_y += dx
       current_move = [current_x, current_y]
 
-      break if board.valid_move?(current_move) == false
+      break if @board.valid_move?(current_move) == false
 
-      if board[current_move].color == self.color
+      if @board[current_move].color == self.color
         break
-      elsif board[current_move].color == !self.color
+      elsif @board[current_move].color == !self.color
         moves << current_move
         break
       else
