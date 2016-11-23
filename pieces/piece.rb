@@ -16,6 +16,10 @@ class Piece
     #refer to subclasses
   end
 
+  def change_coord(coord)
+    @pos = coord
+  end
+
   def empty?
     self.is_a?(NullPiece)
   end

@@ -18,38 +18,38 @@ class Board
       if i == 0
         row.each_index do |j|
           if j == 0 || j == 7
-            @grid[i][j] = Rook.new(@board, [i, j], :black)
+            @grid[i][j] = Rook.new(self, [i, j], :black)
           elsif j == 1 || j == 6
-            @grid[i][j] = Knight.new(@board, [i, j], :black)
+            @grid[i][j] = Knight.new(self, [i, j], :black)
           elsif j == 2 || j == 5
-            @grid[i][j] = Bishop.new(@board, [i, j], :black)
+            @grid[i][j] = Bishop.new(self, [i, j], :black)
           elsif j == 3
-            @grid[i][j] = Queen.new(@board, [i, j], :black)
+            @grid[i][j] = Queen.new(self, [i, j], :black)
           else
-            @grid[i][j] = King.new(@board, [i,j ], :black)
+            @grid[i][j] = King.new(self, [i,j ], :black)
           end
         end
       elsif i == 1
         row.each_index do |k|
-          @grid[i][k] = Pawn.new(@board, [i, k], :black)
+          @grid[i][k] = Pawn.new(self, [i, k], :black)
         end
       elsif i == 7
         row.each_index do |l|
           if l == 0 || l == 7
-            @grid[i][l] = Rook.new(@board, [i, l], :white)
+            @grid[i][l] = Rook.new(self, [i, l], :white)
           elsif l == 1 || l == 6
-            @grid[i][l] = Knight.new(@board, [i, l], :white)
+            @grid[i][l] = Knight.new(self, [i, l], :white)
           elsif l == 2 || l == 5
-            @grid[i][l] = Bishop.new(@board, [i, l], :white)
+            @grid[i][l] = Bishop.new(self, [i, l], :white)
           elsif l == 3
-            @grid[i][l] = Queen.new(@board, [i, l], :white)
+            @grid[i][l] = Queen.new(self, [i, l], :white)
           else
-            @grid[i][l] = King.new(@board, [i, l], :white)
+            @grid[i][l] = King.new(self, [i, l], :white)
           end
         end
       elsif i == 6
         row.each_index do |k|
-          @grid[i][k] = Pawn.new(@board, [i, k], :white)
+          @grid[i][k] = Pawn.new(self, [i, k], :white)
         end
       end
     end
@@ -58,10 +58,10 @@ class Board
 
   def move_piece(start_pos, end_pos)
     begin
-      raise unless self[end_pos].is_a?(NullPiece)
       raise if self[start_pos].is_a?(NullPiece)
 
       self[end_pos] = self[start_pos]
+      self[end_pos].change_coord(end_pos)
       self[start_pos] = NullPiece.instance
     rescue
       puts "Invalid"

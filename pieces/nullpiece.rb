@@ -1,6 +1,7 @@
 require 'singleton'
+require_relative 'piece'
 
-class NullPiece
+class NullPiece <  Piece
   include Singleton
 
   def initialize
@@ -12,5 +13,4 @@ class NullPiece
 
   def color
   end
-
 end

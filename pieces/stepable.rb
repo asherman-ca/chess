@@ -31,24 +31,25 @@ module Stepable
 
   def moves
     moves = []
-    current_x, current_y = pos
 
     move_dirs.each do |dx, dy|
-      current_x += dx
-      current_y += dy
+      current_x, current_y = pos
+
+      current_x += dy
+      current_y += dx
 
       current_move = [current_x, current_y]
 
-      if board.valid_move?(current_move)
-        if board[current_move].empty?
+      if @board.valid_move?(current_move)
+        if @board[current_move].empty?
           moves << current_move
-        elsif board[current_move].color != self.color
+        elsif @board[current_move].color != self.color
           moves << current_move
         end
       end
 
     end
-
+    
     moves
   end
 

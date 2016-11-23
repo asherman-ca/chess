@@ -1,6 +1,7 @@
 require_relative 'board'
 require_relative 'player'
 require_relative 'display'
+require 'byebug'
 
 
 class Chess
@@ -44,9 +45,15 @@ class Chess
     first_turn = @display.cursor.cursor_pos
     cursor_input = nil
 
+    viable_moves = @board[first_turn].moves
+    # debugger
+
     until cursor_input == :space
       @display.render
       cursor_input = @display.cursor.get_input
+      unless viable_moves.include?(@display.cursor.cursor_pos) && cursor_input == :space
+        cursor_input = nil
+      end
     end
 
     second_turn = @display.cursor.cursor_pos

@@ -3,6 +3,8 @@ require_relative 'piece'
 
 class King < Piece
 
+  include Stepable
+
   def to_s
     color == :white ? " \u2654 " : " \u265A "
   end
