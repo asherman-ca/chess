@@ -6,7 +6,8 @@ class King < Piece
   include Stepable
 
   def to_s
-    color == :white ? " \u2654 " : " \u265A "
+    " K "
+    # color == :white ? " \u2654 " : " \u265A "
   end
 
   def move_dirs

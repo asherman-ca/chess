@@ -17,7 +17,7 @@ module Stepable
     [1, 1],
     [1, 0],
     [1, -1],
-    [0, 1],
+    [0, -1],
     [-1, -1]
   ].freeze
 
@@ -49,7 +49,7 @@ module Stepable
       end
 
     end
-    
+
     moves
   end
 

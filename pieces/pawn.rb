@@ -31,23 +31,22 @@ class Pawn < Piece
   def black_moves
     moves = []
 
-    current_x, current_y = pos
 
     STEPS_BLK.each do |dx, dy|
-      current_x += dx
-      current_y += dy
-      current_move = [current_x, current_y]
-      next if board.valid_move?(current_move)
+      current_x, current_y = pos
+      current_move = [current_x + dy, current_y + dx]
+
+      next unless @board.valid_move?(current_move)
       if dy == 2
-        if pos[1] == 6 && board[current_move].empty?
+        if pos[0] == 1 && @board[current_move].empty?
           moves << current_move
         end
       elsif dx != 0
-        if board[current_move].color != color && !board[current_move].empty?
+        if @board[current_move].color != color && !@board[current_move].empty?
           moves << current_move
         end
       else
-        moves << current_move if board[current_move].empty?
+        moves << current_move if @board[current_move].empty?
       end
 
     end
@@ -57,23 +56,23 @@ class Pawn < Piece
   def white_moves
     moves = []
 
-    current_x, current_y = pos
+    # debugger
 
     STEPS_WHT.each do |dx, dy|
-      current_x += dx
-      current_y += dy
-      current_move = [current_x, current_y]
-      next if board.valid_move?(current_move)
-      if dy == 2
-        if pos[1] == 1 && board[current_move].empty?
+      current_x, current_y = pos
+      current_move = [current_x + dy, current_y + dx]
+
+      next unless @board.valid_move?(current_move)
+      if dy == -2
+        if pos[0] == 6 && @board[current_move].empty?
           moves << current_move
         end
       elsif dx != 0
-        if board[current_move].color != color && !board[current_move].empty?
+        if @board[current_move].color != color && !@board[current_move].empty?
           moves << current_move
         end
       else
-        moves << current_move if board[current_move].empty?
+        moves << current_move if @board[current_move].empty?
       end
 
     end
