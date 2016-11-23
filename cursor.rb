@@ -47,6 +47,10 @@ class Cursor
     handle_key(key)
   end
 
+  def reset
+    @selected = nil
+  end
+
   private
 
   def read_char
@@ -85,7 +89,6 @@ class Cursor
       @selected = cursor_pos
       :space
     when :right, :left, :up, :down
-      @selected = nil
       update_pos(MOVES[key])
     when :ctrl_c
       Process.exit(0)
@@ -101,5 +104,6 @@ class Cursor
   def in_bounds?(updated_pos)
     updated_pos.all? { |pos| pos >= 0 && pos < 8}
   end
+
 
 end

@@ -1,3 +1,5 @@
+require_relative 'piece'
+
 class Pawn < Piece
 
   STEPS_BLK = [
@@ -76,6 +78,10 @@ class Pawn < Piece
 
     end
     moves
+  end
+
+  def to_s
+    color == :white ? " \u2659 " : " \u265F "
   end
 
 end

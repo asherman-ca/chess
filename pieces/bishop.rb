@@ -1,9 +1,10 @@
 require_relative 'slidable'
+require_relative 'piece'
 
 class Bishop < Piece
 
   def to_s
-    ' Q '
+    color == :white ? " \u2657 " : " \u265D "
   end
 
   def move_dirs

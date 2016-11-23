@@ -2,6 +2,7 @@ require_relative 'board'
 require_relative 'player'
 require_relative 'display'
 
+
 class Chess
 
   def initialize(name1, name2)
@@ -17,13 +18,14 @@ class Chess
 
     until won?
       take_turn
-      # switch_player
+      @display.cursor.reset
+      switch_player
     end
 
   end
 
   def switch_player
-    @current_player == :white ? :black : :white
+    @current_player = @current_player == :white ? :black : :white
   end
 
   def take_turn
@@ -32,6 +34,11 @@ class Chess
     until cursor_input == :space
       @display.render
       cursor_input = @display.cursor.get_input
+
+      if @board[@display.cursor.cursor_pos].color != @current_player
+        cursor_input = nil
+        @display.cursor.reset
+      end
     end
 
     first_turn = @display.cursor.cursor_pos
@@ -44,6 +51,7 @@ class Chess
 
     second_turn = @display.cursor.cursor_pos
 
+
     @board.move_piece(first_turn, second_turn)
   end
 
@@ -52,3 +60,6 @@ class Chess
   end
 
 end
+
+chess = Chess.new("bob", "shirley")
+chess.play

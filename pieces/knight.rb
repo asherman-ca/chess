@@ -1,9 +1,10 @@
 require_relative 'stepable'
+require_relative 'piece'
 
 class Knight < Piece
 
   def to_s
-    " K "
+    color == :white ? " \u2658 " : " \u265E "
   end
 
   def move_dirs

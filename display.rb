@@ -26,14 +26,14 @@ class Display
   end
 
   def colors_for(i, j)
-    if [i, j] == @cursor.cursor_pos && @cursor.selected
+    if [i, j] == @cursor.selected
       bg = :light_green
     elsif [i, j] == @cursor.cursor_pos
-      bg = :light_red
-    elsif (i + j).odd?
-      bg = :light_blue
-    else
       bg = :light_yellow
+    elsif (i + j).odd?
+      bg = :light_cyan
+    else
+      bg = :light_white
     end
     { background: bg }
   end
@@ -52,19 +52,11 @@ class Display
 
   def render
     system("clear")
-    puts "Arrow keys, WASD, or vim to move, space or enter to confirm."
+    puts "Arrow keys = move, space to confirm."
     build_grid.each { |row| puts row.join }
 
     @notifications.each do |key, val|
       puts "#{val}"
-    end
-  end
-
-
-  def actual_method
-    while true
-      self.render
-      @cursor.get_input
     end
   end
 

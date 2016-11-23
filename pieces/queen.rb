@@ -1,10 +1,11 @@
 require_relative 'slidable'
+require_relative 'piece'
 
 class Queen < Piece
   include Slidable
 
   def to_s
-    " Q "
+    color == :white ? " \u2655 " : " \u265B "
   end
 
   def move_dirs
